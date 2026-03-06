@@ -8,3 +8,6 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return '<h1>About this page</h1>';
 });
+Route::get('/info', function () {
+    return view('info');
+});
