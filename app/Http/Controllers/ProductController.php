@@ -8,7 +8,7 @@ use App\Models\Product;
 class ProductController extends Controller
 {
     public function show(){
-        $products = Product::all();
+        $products = Product::paginate(3);
         return view('products', ['products' => $products]);
     }
     public function create(){
