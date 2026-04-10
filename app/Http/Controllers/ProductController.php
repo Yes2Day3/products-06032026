@@ -15,11 +15,15 @@ class ProductController extends Controller
         return view('create');
     }
     public function store(Request $request){
+        $validated = $request->validate([
+            'name' => 'required|unique:products|max:255',
+            'price' => 'required'
+        ]);
         Product::create([
             'name' => $request['name'],
             'price' => $request['price'],
         ]);
-        return redirect('/products');
+        return redirect()->route('index');
     }
     public function view($id){
         $product = Product::find($id);
@@ -31,16 +35,23 @@ class ProductController extends Controller
     }
     public function update($id, Request $request){
         $product = Product::find($id);
+
+        $validated = $request->validate([
+            'name' => 'required|unique:products|max:255',
+            'price' => 'required'
+        ]);
+
         $product->update([
             'name' => $request['name'],
             'price' => $request['price'],
         ]);
-        return redirect('/products');
+
+        return redirect()->route('index');
     }
     public function delete($id){
         $product = Product::find($id);
         $product->delete();
 
-        return redirect('/products');
+        return redirect()->route('index');
     }
 }

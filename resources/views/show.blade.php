@@ -1,5 +1,9 @@
-<a href='/products'>return</a>
+<a href="{{ route('index') }}">return</a>
 <h1>{{ $product->name }}</h1>
 <p>{{ $product->price }} €</p>
-<a href='/edit/{{$product->id}}'>edit</a>
-<a href='/delete/{{$product->id}}'>delete</a>
+<a href="{{ route('edit', $product) }}">edit</a>
+<form action="{{ route('delete', $product) }}" method='post'>
+    @csrf
+    @method('delete')
+    <input type='submit' value='delete'>
+</form>

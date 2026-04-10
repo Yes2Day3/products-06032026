@@ -1,13 +1,17 @@
-<a href='/products/create'>Create product</a>
+<a href="{{ route('products.create') }}">Create product</a>
 <ul>
     @foreach ($products as $product)
         <li>
             <h1>{{ $product->name }}</h1>
             <p>{{ $product->price }} €</p>
-            <a href='/view/{{ $product->id }}'>view</a>
-            <a href='/edit/{{$product->id}}'>edit</a>
-            <a href='/delete/{{$product->id}}'>delete</a>
+            <a href="{{ route('view', $product) }}">view</a>
+            <a href="{{ route('edit', $product) }}">edit</a>
+            <form action="{{ route('delete', $product) }}" method='post'>
+                @csrf
+                @method('delete')
+                <input type='submit' value='delete'>
+            </form>
         </li>
     @endforeach
 </ul>
-{{ $products->links() }}
+<div class="p-6">{{ $products->links() }}</div>
