@@ -23,8 +23,6 @@ Route::put('/update/{product}', [ProductController::class, 'update']) -> name('u
 Route::delete('/delete/{product}', [ProductController::class, 'delete']) -> name('delete');
 Route::put('/update/{product}/status', [ProductController::class, 'updateStatus']) -> name('updateStatus');
 Route::get('/display-car', function () {
-    $car1 = Car::create('BMW', '2010', 100000);
-    echo $car1->name . "\n";
-    echo $car1->year . "\n";
-    echo $car1->totalDistance . "\n";
+    $car = Car::create('BMW', '2010', 100000);
+    return view('cars.show', ['car' => $car]);
 });
