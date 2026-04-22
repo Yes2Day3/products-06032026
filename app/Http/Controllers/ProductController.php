@@ -54,4 +54,14 @@ class ProductController extends Controller
 
         return redirect()->route('index');
     }
+    public function updateStatus($id, Request $request){
+        $validate = $request->validate([
+            'status' => 'required|in: "In stock", "Out of stock"'
+        ]);
+        $product = Product::find($id);
+        $product->update([
+            'status' => $request['status'],
+        ]);
+        return to_route('index');
+    }
 }

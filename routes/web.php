@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Product;
+use App\Models\Car;
 use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
@@ -20,3 +21,10 @@ Route::get('/view/{product}', [ProductController::class, 'view']) -> name('view'
 Route::get('/edit/{product}', [ProductController::class, 'edit']) -> name('edit');
 Route::put('/update/{product}', [ProductController::class, 'update']) -> name('update'); 
 Route::delete('/delete/{product}', [ProductController::class, 'delete']) -> name('delete');
+Route::put('/update/{product}/status', [ProductController::class, 'updateStatus']) -> name('updateStatus');
+Route::get('/display-car', function () {
+    $car1 = Car::create('BMW', '2010', 100000);
+    echo $car1->name . "\n";
+    echo $car1->year . "\n";
+    echo $car1->totalDistance . "\n";
+});

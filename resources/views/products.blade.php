@@ -4,6 +4,7 @@
         <li>
             <h1>{{ $product->name }}</h1>
             <p>{{ $product->price }} €</p>
+            <p>{{ $product->status }}</p>
             <a href="{{ route('view', $product) }}">view</a>
             <a href="{{ route('edit', $product) }}">edit</a>
             <form action="{{ route('delete', $product) }}" method='post'>
