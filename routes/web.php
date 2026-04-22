@@ -30,5 +30,6 @@ Route::get('/display-cars', function () {
     $car1 = Car::create('BMW', '2010', 100000);
     $car2 = Car::create('Audi', '2000', 166);
     $car3 = Car::create('Ford', '1955', 1);
-    return view('cars.index', ['cars' => $cars = [$car1, $car2, $car3]]);
+    $cars = [$car1, $car2, $car3];
+    return view('cars.index', ['cars' => $cars]);
 });
